@@ -1,0 +1,100 @@
+@(title: Html, nav: String = "")(content: Html)
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Play2:Scala - LAB</title>
+
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+
+    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+
+    <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+    <script src="@routes.Assets.at("javascripts/bootstrap.min.js")" type="text/javascript"></script>
+</head>
+<body>
+
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a style="color: white" class="brand" href="@routes.Projetos.index()">Gerenciador de Projeto - Play2:Scala</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-header">Básico</li>
+                            <li>
+                                <a href="@routes.Projetos.index()">Projeto</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="@routes.Analistas.index()">Analista</a>
+                            </li>
+                            <li>
+                                <a href="@routes.Cargos.index()">Cargo</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="@("active".when(nav == "Projeto"))">
+                        <a href="@routes.Projetos.index()">Projeto</a>
+                    </li>
+                    <li class="@("active".when(nav == "Analista"))">
+                        <a href="@routes.Analistas.index()">Analista</a>
+                    </li>
+                    <li class="@("active".when(nav == "Cargo"))">
+                        <a href="@routes.Cargos.index()">Cargo</a>
+                    </li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="content">
+
+        <div class="page-header">
+            <h1>@nav <small>@title</small></h1>
+        </div>
+
+        @if(flash.contains("success")) {
+        <script>
+            window.onload = function(){
+                setInterval("document.getElementById('msginfo').style.display='none'", 5000);
+            }
+        </script>
+        <div id="msginfo" class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>OK :)</strong> @flash.get("success").
+        </div>
+        }
+
+        <div class="row-fluid">
+
+                @content
+
+        </div>
+
+    </div>
+
+    <footer>
+        <p>
+            <br/>
+            <a href="http://www.github.com/itakenami">www.github.com/itakenami</a>
+        </p>
+    </footer>
+
+</div>
+
+</body>
+</html>

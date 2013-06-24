@@ -1,0 +1,13 @@
+@(id: Long, cargoForm: Form[Cargo])
+
+@import helper._
+
+@main(Html("Editar Existente"), nav = "Cargo") {
+
+    @form(routes.Cargos.update(id), 'class -> "form-horizontal") {
+
+        @formField(cargoForm)
+
+    }
+    
+}

@@ -1,0 +1,13 @@
+@(analistaForm: Form[Analista], cargos: Map[String, String])
+
+@import helper._ 
+
+@main(Html("Adicionar Novo"), nav = "Analista") {
+
+    @helper.form(action = routes.Analistas.save(), 'class -> "form-horizontal") {
+
+        @formField(analistaForm, cargos)
+
+    }
+    
+}

@@ -1,0 +1,20 @@
+@(tabs: Seq[String], active: Int = 0)(content: Html*)
+
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+
+    <ul class="nav nav-tabs">
+        @for((t, index) <- tabs.zipWithIndex){
+            <li @if(index==active){class="active"}><a href="#tab@index" data-toggle="tab">@t</a></li>
+
+        }
+    </ul>
+
+    <div class="tab-content">
+        @for((c, index) <- content.zipWithIndex){
+            <div class="tab-pane @if(index==active){active}" id="tab@index">
+                @c
+            </div>
+        }
+    </div>
+
+</div>

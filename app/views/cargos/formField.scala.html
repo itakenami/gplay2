@@ -1,0 +1,23 @@
+@(cargoForm: Form[Cargo])
+
+@import helper._
+@implicitFieldConstructor = @{ FieldConstructor(helper.twitterBootstrapInput.f) }
+
+<fieldset>
+
+    @helper.tab(Seq("Informações de Cargo")){
+        @inputText(
+            cargoForm("nome"),
+            '_label -> "Nome",
+            '_showConstraints -> false,
+            '_showErrors -> true,
+            '_help -> "Informe o cargo."
+        )
+    }
+
+</fieldset>
+
+<div class="form-actions">
+    <input type="submit" class="btn btn-success" value="Salvar">
+    <a href="@routes.Cargos.index()" class="btn">Cancelar</a>
+</div>

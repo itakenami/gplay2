@@ -1,0 +1,21 @@
+@(id: String, func: String = "showModal")(content: Html)
+<script>
+    function @{func}(url){
+        $('#@id-sim').attr('href', url);
+        $('#@id').modal();
+    }
+</script>
+
+<div id="@id" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Excluir Registro</h3>
+    </div>
+    <div class="modal-body">
+        <p>@content</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+        <a id="@id-sim" class="btn btn-success" href="">Sim</a>
+    </div>
+</div>

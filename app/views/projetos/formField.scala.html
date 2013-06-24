@@ -1,0 +1,69 @@
+@(projetoForm: Form[Projeto], analistas: Map[String, String])
+
+@import helper._
+@implicitFieldConstructor = @{ FieldConstructor(helper.twitterBootstrapInput.f) }
+
+
+@values = @{
+    projetoForm("analistas").indexes.map({
+        v => ","+projetoForm("analistas")("[" + v + "]").value.get+","
+    })
+}
+
+
+<fieldset>
+
+    @helper.tab(Seq("Informações de Projeto")){
+
+        @inputText(
+            projetoForm("nome"),
+            '_label -> "Nome",
+            '_showConstraints -> false,
+            '_showErrors -> true
+        )
+
+        @inputText(
+            projetoForm("descricao"),
+            '_label -> "Descrição",
+            '_showConstraints -> false,
+            '_showErrors -> true,
+            '_help -> "Descreva resumidamente o projeto."
+        )
+
+        @inputDate(
+            projetoForm("data_inicio"),
+            '_label -> "Data Início",
+            '_showConstraints -> false,
+            '_showErrors -> true
+        )
+
+        @inputDate(
+            projetoForm("data_fim"),
+            '_label -> "Data Fim",
+            '_showConstraints -> false,
+            '_showErrors -> true
+        )
+
+        @input(
+            projetoForm("analistas.id"),
+            '_label -> "Analistas",
+            '_showConstraints -> false,
+            '_showErrors -> true,
+            '_help -> "Use o CRTL para selecionar vários."
+        ){(id, name, value, args) =>
+            <select id="@id" name="@name" @toHtmlArgs(args) multiple="multiple">
+                @options(analistas).map { case(id,label) =>
+                    <option value="@id" @{if(values.contains(","+label+",")) "selected" else ""}>@label</option>
+                }
+            </select>
+        }
+
+    }
+
+
+</fieldset>
+
+<div class="form-actions">
+    <input type="submit" class="btn btn-success" value="Salvar">
+    <a href="@routes.Projetos.index()" class="btn">Cancelar</a>
+</div>

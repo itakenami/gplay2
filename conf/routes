@@ -1,0 +1,35 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Projetos.index()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+# Cargos
+GET		/cargos						controllers.Cargos.index()
+GET		/cargos/add					controllers.Cargos.add()
+POST	/cargos/save				controllers.Cargos.save()
+GET		/cargos/:id/edit			controllers.Cargos.edit(id: Long)
+POST	/cargos/:id/update			controllers.Cargos.update(id: Long)
+GET		/cargos/:id/delete			controllers.Cargos.delete(id: Long)
+
+# Analistas
+GET		/analistas					controllers.Analistas.index()
+GET		/analistas/add				controllers.Analistas.add()
+POST	/analistas/save				controllers.Analistas.save()
+GET		/analistas/:id/edit			controllers.Analistas.edit(id: Long)
+POST	/analistas/:id/update		controllers.Analistas.update(id: Long)
+GET		/analistas/:id/delete		controllers.Analistas.delete(id: Long)
+
+# Projetos
+GET		/projetos					controllers.Projetos.index()
+GET		/projetos/add				controllers.Projetos.add()
+POST	/projetos/save				controllers.Projetos.save()
+POST	/projetos/buscar			controllers.Projetos.buscar()
+GET		/projetos/:id/edit			controllers.Projetos.edit(id: Long)
+POST	/projetos/:id/update		controllers.Projetos.update(id: Long)
+GET		/projetos/:id/delete		controllers.Projetos.delete(id: Long)
+GET		/projetos/:id/view			controllers.Projetos.view(id: Long)

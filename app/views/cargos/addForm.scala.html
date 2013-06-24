@@ -1,0 +1,13 @@
+@(cargoForm: Form[Cargo])
+
+@import helper._
+
+@main(Html("Adicionar Novo"), nav = "Cargo") {
+
+    @form(routes.Cargos.save(), 'class -> "form-horizontal") {
+
+        @formField(cargoForm)
+
+    }
+    
+}

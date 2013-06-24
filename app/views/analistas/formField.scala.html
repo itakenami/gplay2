@@ -1,0 +1,38 @@
+@(analistaForm: Form[Analista], cargos: Map[String, String])
+    
+@import helper._
+@implicitFieldConstructor = @{ FieldConstructor(helper.twitterBootstrapInput.f) }
+
+<fieldset>
+
+    @helper.tab(Seq("Informações de Analista")){
+
+        @inputText(
+            analistaForm("nome"),
+            '_label -> "Nome",
+            '_showConstraints -> false,
+            '_showErrors -> true
+        )
+
+        @inputText(
+            analistaForm("especialidade"),
+            '_label -> "Especialidade",
+            '_showConstraints -> false,
+            '_showErrors -> true
+        )
+
+        @select(
+            analistaForm("cargo.id"),
+            options(cargos),
+            '_label -> "Cargo",
+            '_help -> "Escolha um cargo.",
+            '_showErrors -> true
+        )
+    }
+
+</fieldset>
+
+<div class="form-actions">
+    <input type="submit" class="btn btn-success" value="Salvar">
+    <a href="@routes.Analistas.index()" class="btn">Cancelar</a>
+</div>

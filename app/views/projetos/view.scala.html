@@ -1,0 +1,72 @@
+@(projeto: Projeto)
+
+@import helper._
+
+@tab1 = {
+    <dl class="dl-horizontal">
+        <dt>Nome</dt>
+        <dd>@projeto.nome</dd>
+    </dl>
+
+    <dl class="dl-horizontal">
+        <dt>Descrição</dt>
+        <dd>@projeto.descricao</dd>
+    </dl>
+
+    <dl class="dl-horizontal">
+        <dt>Data Início</dt>
+        <dd>@projeto.data_inicio.format("dd/MM/yyyy")</dd>
+    </dl>
+
+    <dl class="dl-horizontal">
+        <dt>Data Fim</dt>
+        <dd>@projeto.data_fim.format("dd/MM/yyyy")</dd>
+    </dl>
+}
+
+@tab2 = {
+    <table class="table table-striped table-bordered table-hover table-condensed">
+
+        <thead>
+        <tr>
+            <th class="headerSortUp">Nome</th>
+            <th class="headerSortUp">Especialidade</th>
+            <th class="headerSortUp">Cargo</th>
+        </tr>
+        </thead>
+
+        @projeto.analistas.map { a =>
+
+        <tbody>
+        <tr>
+            <td>@a.nome</td>
+            <td>@a.especialidade</td>
+            <td>@a.cargo</td>
+        </tr>
+        </tbody>
+
+        }
+
+    </table>
+}
+
+@main(Html("Visualizar Informações"), nav = "Projeto") {
+
+<div class="form-horizontal">
+    @helper.tab(Seq("Informações","Analistas"))(tab1,tab2)
+    <div class="form-actions">
+        <a class="btn btn-info" href="@routes.Projetos.edit(projeto.id)">Editar</a>
+        <a href="@routes.Projetos.index()" class="btn">Cancelar</a>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+}
